@@ -3,7 +3,13 @@ const express = require('express');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
+const { exec } = require('child_process');
 const routes = require('./routes');
+
+function openBrowser(url) {
+  const cmd = process.platform === 'win32' ? `start "" "${url}"` : process.platform === 'darwin' ? `open "${url}"` : `xdg-open "${url}"`;
+  exec(cmd, () => {});
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +42,9 @@ app.use((err, req, res, next) => {
 
 function startServer(port) {
   const server = app.listen(port, () => {
-    console.log(`Hangsix rodando em http://localhost:${server.address().port}`);
+    const url = `http://localhost:${server.address().port}`;
+    console.log(`Hangsix rodando em ${url}`);
+    if (!process.env.VERCEL) openBrowser(url);
   });
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {

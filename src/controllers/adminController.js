@@ -24,18 +24,18 @@ const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } }); // 5M
 
 function getLogin(req, res) {
   if (req.session?.usuario) return res.redirect('/admin');
-  res.render('pages/admin/login', { title: 'Admin - Login', erro: null });
+  res.render('pages/admin/login', { layout: false, title: 'Admin - Login', erro: null });
 }
 
 async function postLogin(req, res) {
   const { email, senha } = req.body;
   const emailTrim = (email || '').trim().toLowerCase();
   if (!emailTrim || !senha) {
-    return res.render('pages/admin/login', { title: 'Admin - Login', erro: 'Preencha e-mail e senha.' });
+    return res.render('pages/admin/login', { layout: false, title: 'Admin - Login', erro: 'Preencha e-mail e senha.' });
   }
   const user = await Usuario.buscarPorEmail(emailTrim);
   if (!user || !(await Usuario.verificarSenha(senha, user.senha_hash))) {
-    return res.render('pages/admin/login', { title: 'Admin - Login', erro: 'E-mail ou senha inválidos.' });
+    return res.render('pages/admin/login', { layout: false, title: 'Admin - Login', erro: 'E-mail ou senha inválidos.' });
   }
   req.session.usuario = user.email;
   req.session.userId = user.id;

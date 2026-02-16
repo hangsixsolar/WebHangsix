@@ -7,18 +7,22 @@
     "start": "node src/app.js",
     "dev": "node --watch src/app.js"
   },
-  "keywords": ["energia-solar", "hangsix"],
+  "keywords": [
+    "energia-solar",
+    "hangsix"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
-    "express-ejs-layouts": "^2.5.1",
     "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.3",
     "multer": "^1.4.5-lts.1",
-    "@supabase/supabase-js": "^2.39.0"
+    "open": "^11.0.0"
   }
 }
