@@ -1,0 +1,35 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Contato</h1>
+    <p>Entre em contato e solicite seu orçamento.</p>
+  </div>
+</section>
+
+<section class="contato-section">
+  <div class="container">
+    <div class="contato-info-card">
+      <h2>Informações de contato</h2>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/hangsixsolar/" target="_blank" rel="noopener">@hangsixsolar</a></p>
+      <p><strong>E-mail:</strong> <a href="mailto:hangsixsolar@gmail.com">hangsixsolar@gmail.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5591992533339" target="_blank" rel="noopener">(91) 99253-3339</a></p>
+      <p><strong>Endereço:</strong><br>TV WE 29, 2, Sala C, Cidade Nova IV — CEP 67133-120 — Coqueiro, Ananindeua - PA</p>
+    </div>
+    <div class="contato-largura">
+    <% if (sucesso) { %>
+    <div class="alert alert-success">Mensagem enviada com sucesso! Entraremos em contato em breve.</div>
+    <% } %>
+    <% if (typeof erro !== 'undefined' && erro) { %>
+    <div class="alert alert-error"><%= erro %></div>
+    <% } %>
+    <form action="/contato" method="POST">
+      <label>Nome *</label>
+      <input type="text" name="nome" required>
+      <label>Telefone *</label>
+      <input type="text" name="telefone" required placeholder="(11) 99999-9999">
+      <label>Mensagem *</label>
+      <textarea name="mensagem" rows="5" required></textarea>
+      <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+    </form>
+    </div>
+  </div>
+</section>

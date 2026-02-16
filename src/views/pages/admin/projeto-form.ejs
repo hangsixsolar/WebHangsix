@@ -1,0 +1,26 @@
+<section class="admin-section">
+  <div class="container form-width">
+    <h1><%= projeto ? 'Editar projeto' : 'Novo projeto' %></h1>
+    <form action="<%= projeto ? '/admin/projetos/' + projeto.id : '/admin/projetos' %>" method="POST" enctype="multipart/form-data">
+      <label>Título *</label>
+      <input type="text" name="titulo" required value="<%= projeto ? projeto.titulo : '' %>">
+      <label>Descrição</label>
+      <textarea name="descricao" rows="4"><%= projeto ? (projeto.descricao || '') : '' %></textarea>
+      <label>Local</label>
+      <input type="text" name="local" value="<%= projeto ? (projeto.local || '') : '' %>">
+      <label>Potência (kWp)</label>
+      <input type="number" name="potencia" step="0.01" value="<%= projeto && projeto.potencia ? projeto.potencia : '' %>">
+      <label>Economia estimada (R$/mês)</label>
+      <input type="number" name="economia" step="0.01" value="<%= projeto && projeto.economia ? projeto.economia : '' %>">
+      <label>Data da instalação</label>
+      <input type="date" name="data_instalacao" value="<%= projeto && projeto.data_instalacao ? projeto.data_instalacao : '' %>">
+      <label><%= projeto ? 'Adicionar imagens' : 'Imagens' %> (opcional)</label>
+      <input type="file" name="imagens" multiple accept="image/*">
+      <% if (projeto && projeto.imagens_url && projeto.imagens_url.length) { %>
+      <p>Imagens atuais: <%= projeto.imagens_url.length %></p>
+      <% } %>
+      <button type="submit" class="btn btn-primary"><%= projeto ? 'Salvar' : 'Criar' %></button>
+      <a href="/admin/projetos" class="btn btn-outline">Cancelar</a>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Calculadora Solar</h1>
+    <p>Simule sua economia e descubra o sistema ideal para você.</p>
+  </div>
+</section>
+
+<section class="calculadora-section">
+  <div class="container calculadora-grid">
+    <div class="calculadora-form">
+      <form action="/calculadora-solar" method="POST">
+        <% if (typeof erro !== 'undefined' && erro) { %>
+        <div class="alert alert-error"><%= erro %></div>
+        <% } %>
+        <label>Nome *</label>
+        <input type="text" name="nome" required value="<%= (formData && formData.nome) || '' %>">
+        <label>Telefone *</label>
+        <input type="text" name="telefone" required placeholder="(11) 99999-9999" value="<%= (formData && formData.telefone) || '' %>">
+        <label>Cidade *</label>
+        <input type="text" name="cidade" required value="<%= (formData && formData.cidade) || '' %>">
+        <label>Valor da conta de energia (R$) *</label>
+        <input type="number" name="valor_conta" step="0.01" min="0" required placeholder="Ex: 350.00" value="<%= (formData && formData.valor_conta) || '' %>">
+        <label>Consumo mensal (kWh) - opcional</label>
+        <input type="number" name="consumo" min="0" placeholder="Deixe em branco para estimar" value="<%= (formData && formData.consumo) || '' %>">
+        <label>Tipo de imóvel</label>
+        <select name="tipo_imovel">
+          <option value="residencial" <%= (formData && formData.tipo_imovel) === 'residencial' ? 'selected' : '' %>>Residencial</option>
+          <option value="comercial" <%= (formData && formData.tipo_imovel) === 'comercial' ? 'selected' : '' %>>Comercial</option>
+          <option value="rural" <%= (formData && formData.tipo_imovel) === 'rural' ? 'selected' : '' %>>Rural</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-block">Calcular economia</button>
+      </form>
+    </div>
+
+    <div class="calculadora-resultado">
+      <% if (resultado) { %>
+      <div class="resultado-card">
+        <h2>Sua economia estimada</h2>
+        <div class="resultado-valor">R$ <%= resultado.economia_estimada.toFixed(2).replace('.', ',') %><span>/mês</span></div>
+        <div class="resultado-detalhes">
+          <p><strong>Potência sugerida:</strong> <%= resultado.potencia_sugerida %> kWp</p>
+          <p><strong>Economia anual:</strong> R$ <%= resultado.economia_anual.toFixed(2).replace('.', ',') %></p>
+          <p><strong>Módulos:</strong> ~<%= resultado.modulo_qtd %> painéis</p>
+        </div>
+        <p class="resultado-obs">* Valores estimados. Entre em contato para um orçamento personalizado.</p>
+        <a href="/contato" class="btn btn-primary">Solicitar orçamento</a>
+      </div>
+      <% } else { %>
+      <div class="resultado-placeholder">
+        <p>Preencha o formulário ao lado para ver sua economia estimada.</p>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>

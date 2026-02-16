@@ -1,0 +1,68 @@
+<section class="hero">
+  <div class="container">
+    <img src="/images/LogoHangsixSemFundo.png" alt="Hangsix Energia Solar" class="hero-logo">
+    <h1>Energia Solar para sua <span>casa e empresa</span></h1>
+    <p>Reduza sua conta de luz em até 85%. Instalação profissional e suporte completo.</p>
+    <div class="hero-actions">
+      <a href="/calculadora-solar" class="btn btn-primary">Simule sua economia</a>
+      <a href="/contato" class="btn btn-outline">Solicitar orçamento</a>
+    </div>
+  </div>
+</section>
+
+<section class="beneficios">
+  <div class="container">
+    <h2>Por que escolher energia solar?</h2>
+    <div class="beneficios-grid">
+      <div class="beneficio-card">
+        <div class="beneficio-icon">💰</div>
+        <h3>Economia</h3>
+        <p>Reduza sua conta de luz em até 85% e valorize seu imóvel.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icon">🌱</div>
+        <h3>Sustentabilidade</h3>
+        <p>Energia limpa e renovável, sem impacto ao meio ambiente.</p>
+      </div>
+      <div class="beneficio-card">
+        <div class="beneficio-icon">⚡</div>
+        <h3>Independência</h3>
+        <p>Fique menos dependente das variações das tarifas de energia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% if (projetos && projetos.length) { %>
+<section class="projetos-destaque">
+  <div class="container">
+    <h2>Projetos em destaque</h2>
+    <div class="projetos-grid">
+      <% projetos.slice(0, 3).forEach(p => { %>
+      <a href="/projeto/<%= p.id %>" class="projeto-card">
+        <div class="projeto-img">
+          <% if (p.imagens_url && p.imagens_url[0]) { %>
+          <img src="<%= p.imagens_url[0] %>" alt="<%= p.titulo %>">
+          <% } else { %>
+          <div class="projeto-placeholder">📷</div>
+          <% } %>
+        </div>
+        <div class="projeto-info">
+          <h3><%= p.titulo %></h3>
+          <p><%= p.local || '' %> • <%= p.potencia ? p.potencia + ' kWp' : '' %></p>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+    <a href="/projetos" class="btn btn-outline">Ver todos os projetos</a>
+  </div>
+</section>
+<% } %>
+
+<section class="cta">
+  <div class="container">
+    <h2>Pronto para economizar?</h2>
+    <p>Faça uma simulação gratuita e descubra quanto você pode economizar.</p>
+    <a href="/calculadora-solar" class="btn btn-primary">Calcular minha economia</a>
+  </div>
+</section>

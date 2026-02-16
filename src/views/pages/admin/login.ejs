@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Admin Hangsix</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+  <div class="login-box">
+    <img src="/images/LogoHangsixSemFundo.png" alt="Hangsix Energia Solar" class="login-logo">
+    <p>Faça login para acessar o painel</p>
+    <% if (erro) { %>
+    <div class="alert alert-error"><%= erro %></div>
+    <% } %>
+    <form action="/admin/login" method="POST">
+      <label>E-mail</label>
+      <input type="email" name="email" required autofocus placeholder="seu@email.com">
+      <label>Senha</label>
+      <input type="password" name="senha" required>
+      <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+    </form>
+  </div>
+</body>
+</html>

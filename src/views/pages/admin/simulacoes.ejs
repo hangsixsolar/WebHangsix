@@ -1,0 +1,26 @@
+<section class="admin-section">
+  <div class="container">
+    <h1>Simulações da calculadora</h1>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Nome</th><th>Telefone</th><th>Cidade</th><th>Valor conta</th><th>Potência</th><th>Economia/mês</th></tr>
+      </thead>
+      <tbody>
+        <% (simulacoes || []).forEach(s => { %>
+        <tr>
+          <td><%= new Date(s.data).toLocaleDateString('pt-BR') %></td>
+          <td><%= s.nome %></td>
+          <td><%= s.telefone %></td>
+          <td><%= s.cidade %></td>
+          <td>R$ <%= parseFloat(s.valor_conta || 0).toFixed(2).replace('.', ',') %></td>
+          <td><%= s.potencia_sugerida ? s.potencia_sugerida + ' kWp' : '-' %></td>
+          <td>R$ <%= parseFloat(s.economia_estimada || 0).toFixed(0).replace('.', ',') %></td>
+        </tr>
+        <% }); %>
+        <% if (!simulacoes || !simulacoes.length) { %>
+        <tr><td colspan="7">Nenhuma simulação</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

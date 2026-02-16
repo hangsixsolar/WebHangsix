@@ -1,0 +1,23 @@
+<section class="admin-section">
+  <div class="container">
+    <h1>Contatos recebidos</h1>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Nome</th><th>Telefone</th><th>Mensagem</th></tr>
+      </thead>
+      <tbody>
+        <% (contatos || []).forEach(c => { %>
+        <tr>
+          <td><%= new Date(c.data).toLocaleDateString('pt-BR') %></td>
+          <td><%= c.nome %></td>
+          <td><%= c.telefone %></td>
+          <td><%= c.mensagem %></td>
+        </tr>
+        <% }); %>
+        <% if (!contatos || !contatos.length) { %>
+        <tr><td colspan="4">Nenhum contato</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

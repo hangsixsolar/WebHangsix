@@ -1,0 +1,34 @@
+<% if (projeto) { %>
+<section class="page-header projeto-detalhe-header">
+  <div class="container">
+    <h1><%= projeto.titulo %></h1>
+    <p><%= projeto.local || '' %> • <%= projeto.potencia ? projeto.potencia + ' kWp' : '' %></p>
+  </div>
+</section>
+
+<section class="projeto-detalhe">
+  <div class="container">
+    <% if (projeto.imagens_url && projeto.imagens_url.length) { %>
+    <div class="projeto-galeria">
+      <% projeto.imagens_url.forEach(url => { %>
+      <img src="<%= url %>" alt="<%= projeto.titulo %>">
+      <% }); %>
+    </div>
+    <% } %>
+    <div class="projeto-conteudo">
+      <% if (projeto.descricao) { %>
+      <h2>Descrição</h2>
+      <p><%= projeto.descricao %></p>
+      <% } %>
+      <div class="projeto-stats">
+        <% if (projeto.local) { %><p><strong>Local:</strong> <%= projeto.local %></p><% } %>
+        <% if (projeto.potencia) { %><p><strong>Potência:</strong> <%= projeto.potencia %> kWp</p><% } %>
+        <% if (projeto.economia) { %><p><strong>Economia:</strong> R$ <%= parseFloat(projeto.economia).toFixed(0).replace('.', ',') %>/mês</p><% } %>
+        <% if (projeto.data_instalacao) { %><p><strong>Data da instalação:</strong> <%= new Date(projeto.data_instalacao).toLocaleDateString('pt-BR') %></p><% } %>
+      </div>
+    </div>
+  </div>
+</section>
+<% } else { %>
+<section class="page-header"><div class="container"><h1>Projeto não encontrado</h1></div></section>
+<% } %>

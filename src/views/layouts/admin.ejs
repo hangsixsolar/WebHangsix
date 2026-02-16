@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Admin Hangsix</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <div class="container admin-header-inner">
+      <a href="/admin" class="logo"><img src="/images/LogoHangsixSemFundo.png" alt="Hangsix" class="admin-logo-img"></a>
+      <nav>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/projetos">Projetos</a>
+        <a href="/admin/simulacoes">Simulações</a>
+        <a href="/admin/contatos">Contatos</a>
+        <a href="/" target="_blank">Ver site</a>
+        <a href="/admin/logout">Sair</a>
+      </nav>
+    </div>
+  </header>
+  <main class="admin-main">
+    <%- body %>
+  </main>
+</body>
+</html>

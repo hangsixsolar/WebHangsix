@@ -1,0 +1,33 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Projetos Realizados</h1>
+    <p>Conheça nossas instalações de energia solar.</p>
+  </div>
+</section>
+
+<section class="projetos-lista">
+  <div class="container">
+    <% if (projetos && projetos.length) { %>
+    <div class="projetos-grid">
+      <% projetos.forEach(p => { %>
+      <a href="/projeto/<%= p.id %>" class="projeto-card">
+        <div class="projeto-img">
+          <% if (p.imagens_url && p.imagens_url[0]) { %>
+          <img src="<%= p.imagens_url[0] %>" alt="<%= p.titulo %>">
+          <% } else { %>
+          <div class="projeto-placeholder">📷</div>
+          <% } %>
+        </div>
+        <div class="projeto-info">
+          <h3><%= p.titulo %></h3>
+          <p><%= p.local || '' %> • <%= p.potencia ? p.potencia + ' kWp' : '' %></p>
+          <% if (p.economia) { %><p class="economia">Economia: R$ <%= parseFloat(p.economia).toFixed(0).replace('.', ',') %>/mês</p><% } %>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+    <% } else { %>
+    <p class="empty-state">Nenhum projeto cadastrado ainda.</p>
+    <% } %>
+  </div>
+</section>

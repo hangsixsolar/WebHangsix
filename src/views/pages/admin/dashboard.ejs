@@ -1,0 +1,45 @@
+<section class="admin-dashboard">
+  <div class="container">
+    <h1>Dashboard</h1>
+    <div class="admin-cards">
+      <a href="/admin/projetos" class="admin-card">
+        <h3><%= projetos.length %></h3>
+        <p>Projetos</p>
+      </a>
+      <a href="/admin/simulacoes" class="admin-card">
+        <h3><%= simulacoes.length %></h3>
+        <p>Simulações</p>
+      </a>
+      <a href="/admin/contatos" class="admin-card">
+        <h3><%= contatos.length %></h3>
+        <p>Contatos</p>
+      </a>
+    </div>
+    <div class="admin-tables">
+      <div>
+        <h2>Últimas simulações</h2>
+        <table>
+          <thead><tr><th>Nome</th><th>Telefone</th><th>Cidade</th><th>Economia</th></tr></thead>
+          <tbody>
+            <% (simulacoes || []).forEach(s => { %>
+            <tr><td><%= s.nome %></td><td><%= s.telefone %></td><td><%= s.cidade %></td><td>R$ <%= parseFloat(s.economia_estimada || 0).toFixed(0) %></td></tr>
+            <% }); %>
+            <% if (!simulacoes || !simulacoes.length) { %><tr><td colspan="4">Nenhuma simulação</td></tr><% } %>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>Últimos contatos</h2>
+        <table>
+          <thead><tr><th>Nome</th><th>Telefone</th><th>Mensagem</th></tr></thead>
+          <tbody>
+            <% (contatos || []).forEach(c => { %>
+            <tr><td><%= c.nome %></td><td><%= c.telefone %></td><td><%= (c.mensagem || '').substring(0, 50) %>...</td></tr>
+            <% }); %>
+            <% if (!contatos || !contatos.length) { %><tr><td colspan="3">Nenhum contato</td></tr><% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

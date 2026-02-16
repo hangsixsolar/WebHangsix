@@ -1,0 +1,34 @@
+<section class="admin-section">
+  <div class="container">
+    <h1>Projetos <a href="/admin/projetos/novo" class="btn btn-primary">Novo projeto</a></h1>
+    <table>
+      <thead>
+        <tr><th>Foto</th><th>Título</th><th>Local</th><th>Potência</th><th>Ações</th></tr>
+      </thead>
+      <tbody>
+        <% (projetos || []).forEach(p => { %>
+        <tr>
+          <td>
+            <% if (p.imagens_url && p.imagens_url[0]) { %>
+            <img src="<%= p.imagens_url[0] %>" alt="" class="thumb">
+            <% } else %><span>-</span>
+          </td>
+          <td><%= p.titulo %></td>
+          <td><%= p.local || '-' %></td>
+          <td><%= p.potencia ? p.potencia + ' kWp' : '-' %></td>
+          <td>
+            <a href="/projeto/<%= p.id %>" target="_blank">Ver</a>
+            <a href="/admin/projetos/<%= p.id %>/editar">Editar</a>
+            <form action="/admin/projetos/<%= p.id %>/excluir" method="POST" style="display:inline" onsubmit="return confirm('Excluir?')">
+              <button type="submit" class="btn-link danger">Excluir</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+        <% if (!projetos || !projetos.length) { %>
+        <tr><td colspan="5">Nenhum projeto cadastrado</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>
