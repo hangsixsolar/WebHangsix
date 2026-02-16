@@ -14,11 +14,11 @@
     <% if (erro) { %>
     <div class="alert alert-error"><%= erro %></div>
     <% } %>
-    <form action="/admin/login" method="POST">
+    <form action="/admin/login" method="POST" autocomplete="on">
       <label>E-mail</label>
-      <input type="email" name="email" required autofocus placeholder="seu@email.com">
+      <input type="email" name="email" required autofocus placeholder="seu@email.com" autocomplete="email">
       <label>Senha</label>
-      <input type="password" name="senha" required>
+      <input type="password" name="senha" required autocomplete="current-password">
       <button type="submit" class="btn btn-primary btn-block">Entrar</button>
     </form>
   </div>
