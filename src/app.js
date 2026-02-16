@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const { exec } = require('child_process');
@@ -21,11 +21,14 @@ app.set('layout', 'layouts/main');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
+// Sessão no cookie (funciona na Vercel sem banco; dados assinados no próprio cookie)
+app.use(cookieSession({
+  name: 'hangsix_session',
   secret: process.env.SESSION_SECRET || 'hangsix-secret-change-in-production',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000 }
+  maxAge: 24 * 60 * 60 * 1000,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'lax',
+  httpOnly: true
 }));
 
 app.use(routes);

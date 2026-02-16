@@ -43,7 +43,7 @@ async function postLogin(req, res) {
 }
 
 function logout(req, res) {
-  req.session.destroy();
+  req.session = null;
   res.redirect('/admin/login');
 }
 
